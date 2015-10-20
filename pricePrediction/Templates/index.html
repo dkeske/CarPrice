@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sellthatmegane.com</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="text-center">
+	<div class="alert alert-info">
+  		<h2>Welcome to sell your Renault Megane dot com! :)</h2>
+  		<h4>How much is your car really worth? </h4>
+  		<h4>Get an estimate based on data gathered from all renault meganes on sale in Serbia</h4>
+  	</div>
+	<form method="post" role="form">
+		{% csrf_token %}
+		<div class=" col-md-3 col-md-offset-4 form-group">
+			<label>Kilowatts</label> 
+			<input class="form-control" type="text" name="kw" placeholder="ex. 78" value={{kw}}> 
+			<label>Kilometers</label>
+			<input class="form-control" type="text" name="km" placeholder="ex. 212000" value={{km}}>
+			<label>Year of make</label>
+			<input class="form-control" type="text" name="year" placeholder="ex 2007" value={{year}}>
+			<label>Air Condition</label>
+			<select class="form-control" name="ac">
+				<option value="0" {%if ac == "0" %} selected {% endif %}>Manual</option>
+				<option value="1" {%if ac == "1" %} selected {% endif %}>Automatic</option>
+			</select>
+			<label>Transmission type</label>
+			<select class="form-control" name="gears">
+				<option value="0" {%if gears == "0" %} selected {% endif %}>Manual</option>
+				<option value="1" {%if gears == "1" %} selected {% endif %}>Automatic</option>
+			</select>
+			<label>Body type</label>
+			<select class="	form-control" name="body">
+				<option value="0" {%if body == "0" %} selected {% endif %}>Sedan</option>
+				<option value="1" {%if body == "1" %} selected {% endif %}>Hatchback</option>
+				<option value="2" {%if body == "2" %} selected {% endif %}>Wagon</option>
+				<option value="3" {%if body == "3" %} selected {% endif %}>Coupe</option>
+			</select>
+			<hr>
+			<input type="submit" value="Calculate" class="btn btn-primary form-control" >
+			
+			{% if price %}
+				<h3>Calculated price is: {{price}} eur</h3>
+			{% endif %}
+		</div>
+	</form>
+	
+	</div>
+</body>
+</html>
