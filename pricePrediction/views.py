@@ -2,27 +2,37 @@
 from django.shortcuts import render
 import os
 
+def parseBody(body):
+	if body == "0":
+		return [1,0,0]
+	if body == "1":
+		return [0,1,0]
+	if body == "2":
+		return  [0,0,1]
+	if body == "3":
+		return  [0,0,0]
+	#Limuzina 0
+	#Hecbek   1
+	#Karavan  2
+	#Kupe     3
+
+			
 
 def calculatePrice(kw, km, year, ac, gears, body):
-	import numpy as np 
-	from sklearn import linear_model, datasets
-	module_dir = os.path.dirname(__file__)  # get current directory
+	import DataFiles.analize as an
 	
-	f = open(os.path.join(module_dir, "outputfilePOLOVNI.txt"))
-	g = open(os.path.join(module_dir, "outputfilePOLOVNIcena.txt"))
-	h = open(os.path.join(module_dir, "ocena.txt"), 'w')
-
-	dataParams = np.loadtxt(f, delimiter=',')
-	dataPrice = np.loadtxt(g)
-	clf = linear_model.Ridge (alpha = .3, normalize=True)
-	clf.fit(dataParams, dataPrice)
+	clf = an.makeModelforView()
 	kw = int(kw)
 	km = int(km)
 	year = int(year)
 	ac = int(ac)
 	gears = int(gears)
-	body = int(body)
-	prediction = clf.predict([kw, km, year, ac, gears, body])
+	body = parseBody(body)
+
+	parametres = [kw, km, year, ac, gears]
+	parametres.extend(body)
+	
+	prediction = clf.predict(parametres)
 	return prediction[0]
 	#dodaj da uci, korisnik unosi cenu koju je stavio na oglas, i onda je dodajemo u dataset
 
