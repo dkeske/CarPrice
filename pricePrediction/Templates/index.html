@@ -10,6 +10,7 @@
   		<h2>Welcome to sell your Renault Megane dot com! :)</h2>
   		<h4>How much is your car really worth? </h4>
   		<h4>Get an estimate based on data gathered from all renault meganes on sale in Serbia</h4>
+
   	</div>
 	<form method="post" role="form">
 		{% csrf_token %}
@@ -19,7 +20,7 @@
 			<label>Kilometers</label>
 			<input class="form-control" type="text" name="km" placeholder="ex. 212000" value={{km}}>
 			<label>Year of make</label>
-			<input class="form-control" type="text" name="year" placeholder="ex 2007" value={{year}}>
+			<input class="form-control" type="text" name="year" placeholder="ex. 2007" value={{year}}>
 			<label>Air Condition</label>
 			<select class="form-control" name="ac">
 				<option value="0" {%if ac == "0" %} selected {% endif %}>Manual</option>
@@ -38,14 +39,14 @@
 				<option value="3" {%if body == "3" %} selected {% endif %}>Coupe</option>
 			</select>
 			<hr>
-			<input type="submit" value="Calculate" class="btn btn-primary form-control" >
+			<input type="submit" value="Calculate" class="btn btn-primary form-control">
 			
 			{% if price %}
-				<h3>Calculated price is: {{price}} eur</h3>
+				<h3>Calculated price is: {{price}} Euro</h3>
 			{% endif %}
 		</div>
 	</form>
-	
+		
 	</div>
 </body>
 </html>

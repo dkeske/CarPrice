@@ -3,15 +3,20 @@ from sklearn import linear_model
 import urllib2
 
 f = open('outputfilePOLOVNI.txt', 'w')
-p = open('outputfilePOLOVNIcena.txt', 'w')
 
 errorFile = open('errorFile.txt', 'w')
 x = 0
 
 while (x<45):
+	#192 - reno
+	#37 - bmw
+
+	#1824 megane
+	#1005 series 3
 	soup = BeautifulSoup(
 		urllib2.urlopen('http://www.polovniautomobili.com/putnicka-vozila/pretraga?page='+
-			str(x) +'&brand=192&model=1824&showOldNew=all').read(), 'html.parser')
+			str(x) +'&brand=192&model=1824&year_from=2000&year_to=2013&mileage_from=25000&showOldNew=all'
+			+ '&chassis%5B%5D=277&chassis%5B%5D=2631&chassis%5B%5D=278&chassis%5B%5D=2633&air_condition%5B%5D=3159&air_condition%5B%5D=3160').read(), 'html.parser')
 	
 	wholeList = soup.find("ul", {"id" : "searchlist-items"})
 
@@ -48,13 +53,13 @@ while (x<45):
 			#Kupe     3
 
 			if "Limuzina" in karoserija:
-				karos = "1,0,0"
-			if "bek" in karoserija:
-				karos = "0,1,0"
-			if "Karavan" in karoserija:
-				karos = "0,0,1"
-			if "Kupe" in karoserija:
 				karos = "0,0,0"
+			if "bek" in karoserija:
+				karos = "1,0,0"
+			if "Karavan" in karoserija:
+				karos = "0,1,0"
+			if "Kupe" in karoserija:
+				karos = "0,0,1"
 
 			gorivo = infoArray[2]
 
@@ -73,8 +78,7 @@ while (x<45):
 				klima = 1
 
 			try:
-				writeF = str(kw) + "," + km + "," + year + ","+ str(klima) + ","+ str(menjac)+","+str(karos) +'\n'
-				writeP = price + '\n'
+				writeF = str(kw) + "," + km + "," + year + ","+ str(klima) + ","+ str(menjac)+","+str(karos)+","+price +'\n'
 
 				if "Manu" in writeF:
 					print("Manu found")
@@ -82,11 +86,10 @@ while (x<45):
 					print("Auto found")
 				else:
 					f.write(writeF)
-					p.write(writeP)
 			except Exception as e:
 				errorFile.write(str(x) + '********' + str(e) + '********' + '\n')
 				pass
 	x = x +1
 f.close
-p.close
+
 errorFile.close 
