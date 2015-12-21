@@ -7,7 +7,8 @@ import views
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', views.home, name='home'),
-    # url(r'^CarPrice/', include('CarPrice.foo.urls')),
+
+    url(r'^userSubmit', views.userSubmit, name="userSubmit"),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

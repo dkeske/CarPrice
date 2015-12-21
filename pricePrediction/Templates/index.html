@@ -1,52 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sellthatmegane.com</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <title>Sellthatmegane.com</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    {% load staticfiles %}
+    <link rel="shortcut icon" href="{%  static 'favicon.ico' %}">
+    <script src="{% static "jquery_2.1.4_jquery.js" %}"></script>
+    <script src="{% static "bootstrap_3.3.5_js_bootstrap.js" %}"></script>
+    <script src="{% static "ajax.js" %}"></script>
+
 </head>
 <body>
-	<div class="text-center">
-	<div class="alert alert-info">
-  		<h2>Welcome to sell your Renault Megane dot com! :)</h2>
-  		<h4>How much is your car really worth? </h4>
-  		<h4>Get an estimate based on data gathered from all renault meganes on sale in Serbia</h4>
+<div class="text-center">
+    <div class="alert alert-info">
+        <h2>Welcome to sell your Renault Megane dot com! :)</h2>
+        <h4>How much is your car really worth? </h4>
+        <h4>Get an estimate based on data gathered from all renault meganes on sale in Serbia</h4>
 
-  	</div>
-	<form method="post" role="form">
-		{% csrf_token %}
-		<div class=" col-md-3 col-md-offset-4 form-group">
-			<label>Kilowatts</label> 
-			<input class="form-control" type="text" name="kw" placeholder="ex. 78" value={{kw}}> 
-			<label>Kilometers</label>
-			<input class="form-control" type="text" name="km" placeholder="ex. 212000" value={{km}}>
-			<label>Year of make</label>
-			<input class="form-control" type="text" name="year" placeholder="ex. 2007" value={{year}}>
-			<label>Air Condition</label>
-			<select class="form-control" name="ac">
-				<option value="0" {%if ac == "0" %} selected {% endif %}>Manual</option>
-				<option value="1" {%if ac == "1" %} selected {% endif %}>Automatic</option>
-			</select>
-			<label>Transmission type</label>
-			<select class="form-control" name="gears">
-				<option value="0" {%if gears == "0" %} selected {% endif %}>Manual</option>
-				<option value="1" {%if gears == "1" %} selected {% endif %}>Automatic</option>
-			</select>
-			<label>Body type</label>
-			<select class="	form-control" name="body">
-				<option value="0" {%if body == "0" %} selected {% endif %}>Sedan</option>
-				<option value="1" {%if body == "1" %} selected {% endif %}>Hatchback</option>
-				<option value="2" {%if body == "2" %} selected {% endif %}>Wagon</option>
-				<option value="3" {%if body == "3" %} selected {% endif %}>Coupe</option>
-			</select>
-			<hr>
-			<input type="submit" value="Calculate" class="btn btn-primary form-control">
-			
-			{% if price %}
-				<h3>Calculated price is: {{price}} Euro</h3>
-			{% endif %}
-		</div>
-	</form>
-		
-	</div>
+    </div>
+    <div class=" col-md-3 col-md-offset-4 form-group">
+        <form method="post" role="form">
+            {% csrf_token %}
+
+            <label>Kilowatts</label>
+            <input id="kw" class="form-control" type="text" name="kw" placeholder="ex. 78">
+            <label>Kilometers</label>
+            <input id="km" class="form-control" type="text" name="km" placeholder="ex. 212000">
+            <label>Year of make</label>
+            <input id="year" class="form-control" type="text" name="year" placeholder="ex. 2007">
+            <label>Air Condition</label>
+            <select id="ac" class="form-control" name="ac">
+                <option value="0" >Manual</option>
+                <option value="1" >Automatic</option>
+            </select>
+            <label>Transmission type</label>
+            <select id="gears" class="form-control" name="gears">
+                <option value="0" >Manual</option>
+                <option value="1" >Automatic</option>
+            </select>
+            <label>Body type</label>
+            <select id="bodyType" class="	form-control" name="body">
+                <option value="0" >Sedan</option>
+                <option value="1" >Hatchback</option>
+                <option value="2" >Wagon</option>
+                <option value="3" >Coupe</option>
+            </select>
+            <hr>
+
+
+        </form>
+        <button id="calculate" class="btn btn-primary form-control">Calculate </button>
+        <div>
+            <p id="errorMessage"></p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="calculatedPrice" class="modal-title">Your cars price is: </h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label>Enter the price you think is more suitable</label>
+                            <input id="userPrice" class="form-control" type="text">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="userSubmit" type="button" class="btn btn-success" data-dismiss="modal">Submit new price</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 </body>
 </html>
