@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib2
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CarPrice.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CarPrice.settings.py")
 # Uncomment below for Django 1.7 +
 import django
 django.setup()
