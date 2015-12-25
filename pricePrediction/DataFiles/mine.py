@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib2
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CarPrice.settings.py")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CarPrice.settings")
 # Uncomment below for Django 1.7 +
 import django
 django.setup()
@@ -13,7 +13,7 @@ f = open('outputfilePOLOVNI.txt', 'w')
 errorFile = open('errorFile.txt', 'w')
 x = 0
 
-while (x < 45):
+while (x < 43):
     # 192 - reno
     # 37 - bmw
 
@@ -32,7 +32,12 @@ while (x < 45):
         # pronalazi deo sa kilometrazom, godistem i cenom
         additional = listItem.findAll("div", {"class": "title-additional"})
 
-        if (additional != []):
+        itemTitle = listItem.findAll("a", href=True)
+        if itemTitle:
+            aTag = itemTitle[0]['href']
+            hrefArray = aTag.split("/")
+            idFromSite = hrefArray[-2]
+        if additional:
             divAdditional = additional[0]
 
             itemsAdditional = divAdditional.findAll("div")
@@ -94,9 +99,9 @@ while (x < 45):
                     print("Auto found")
                 else:
                     f.write(writeF)
-                    carAdInstance = carAd(kw=kw, km=km, year=year, ac=klima, gears=menjac, body=karos, price=price)
+                    carAdInstance = carAd(kw=kw, km=km, year=year, ac=klima, gears=menjac, body=karos, price=price, idFromSite=idFromSite)
                     carAdInstance.save()
-                    print(year)
+
             except Exception as e:
                 errorFile.write(str(x) + '********' + str(e) + '********' + '\n')
                 pass

@@ -10,6 +10,8 @@ urlpatterns = patterns('',
 
     url(r'^userSubmit', views.userSubmit, name="userSubmit"),
 
+    url(r'^chrome', views.chrome, name="chrome"),
+
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

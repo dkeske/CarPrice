@@ -2,6 +2,8 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+import traceback
 
 from pricePrediction.models import carAd
 
@@ -20,6 +22,10 @@ def parseBody(body):
     #Karavan  2
     #Kupe     3
 
+def getIdFromUrl(url):
+    idFromSite = url.split('/')[-2]
+    return idFromSite
+
 def calculatePrice(kw, km, year, ac, gears, body):
     import DataFiles.analize as an
 
@@ -29,15 +35,16 @@ def calculatePrice(kw, km, year, ac, gears, body):
     year = int(year)
     ac = int(ac)
     gears = int(gears)
-    body = parseBody(body)
+    if type(body) != list:
+        body = parseBody(body)
+    else:
+        body = [float(body[0]), float(body[1]), float(body[2])]
+    parameters = [kw, km, year, ac, gears]
+    parameters.extend(body)
 
-    parametres = [kw, km, year, ac, gears]
-    parametres.extend(body)
-
-    prediction = clf.predict(parametres)
+    prediction = clf.predict(parameters)
     return "{0:.2f}".format(prediction[0])
-#dodaj da uci, korisnik unosi cenu koju je stavio na oglas, i onda je dodajemo u dataset
-#dodaj i modal za unos :)
+
 
 def home (request):
     if request.method == 'GET':
@@ -56,11 +63,12 @@ def home (request):
             return JsonResponse({'price':price})
         # return render(request, 'index.html', {'price':price, 'kw':kw, 'km':km, 'year':year, 'ac':ac, 'gears':gears, 'body':body})
         except Exception, e:
+            traceback.print_exc()
             return render(request, 'index.html')
 
 
 def userSubmit(request):
-    from DataFiles.save import saveToFile
+    # from DataFiles.save import saveToFile
     if request.method == 'POST':
         try:
             kw = request.POST['kw']
@@ -83,4 +91,18 @@ def userSubmit(request):
             # saveToFile(kw, km, year, ac, gears, body, userPrice)
             return HttpResponse(status=200)
         except Exception, e:
+            traceback.print_exc()
             return HttpResponse(status=403)
+
+@csrf_exempt
+def chrome(request):
+    if request.method == 'POST':
+        try:
+            url = request.POST['url']
+            idFromSite = getIdFromUrl(url)
+            car = carAd.objects.filter(idFromSite=idFromSite)[0]
+            price = calculatePrice(car.kw, car.km, car.year, car.ac, car.gears, car.body.split(','))
+            return render(request, 'chrome.html', {'price': price})
+        except Exception as e:
+            # traceback.print_exc()
+            return render(request, 'chrome.html', {'price': "?"})

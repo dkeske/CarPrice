@@ -11,3 +11,4 @@ class carAd(models.Model):
     gears = models.CharField(max_length=20)
     body = models.CharField(max_length=20)
     price = models.CharField(max_length=20)
+    idFromSite = models.CharField(max_length=20)

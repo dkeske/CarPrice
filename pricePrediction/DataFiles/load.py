@@ -1,6 +1,8 @@
 import numpy as np
+import os
 def getSet(trainSize=0.7):
-    f = open('outputfilePOLOVNI.txt')
+    dirname = os.path.dirname(__file__)
+    f = open(dirname+ '\\outputfilePOLOVNI.txt')
 
     dataAllParams = np.loadtxt(f, delimiter=',')
     np.random.shuffle(dataAllParams)
