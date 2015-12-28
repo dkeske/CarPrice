@@ -39,7 +39,7 @@ def doLinear(trainSize=0.7):
     return clf
 
 def doRidge(trainSize=0.7):
-    clf2 = linear_model.Ridge(alpha = .1, normalize=True)
+    clf2 = linear_model.Ridge(alpha=.1, normalize=True)
 
     dataSet = load.getSet(trainSize)
 

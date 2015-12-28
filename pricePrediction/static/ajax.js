@@ -50,7 +50,7 @@ $(document).ready(function(){
                 body : bodyType
             };
             $.post("/", data, function(priceData){
-                $('#calculatedPrice').append(priceData.price);
+                $('#calculatedPrice').text(priceData.price);
             });
         }
 
