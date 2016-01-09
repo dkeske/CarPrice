@@ -1,5 +1,5 @@
 import numpy as np
-import os
+# import os
 from pricePrediction import models
 def getSet(trainSize=0.7):
     # dirname = os.path.dirname(__file__)

@@ -89,7 +89,8 @@ def userSubmit(request):
             carAdInstance = carAd(kw=kw, km=km, year=year, ac=ac, gears=gears, body=body, price=userPrice)
             carAdInstance.save()
             # saveToFile(kw, km, year, ac, gears, body, userPrice)
-            return HttpResponse(status=200)
+            # return HttpResponse(status=200)
+            return render('index.html', {'cars': carAd.objects.all()})
         except Exception, e:
             traceback.print_exc()
             return HttpResponse(status=403)

@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 # kw, km, year, ac, gears, body, userPrice
 
@@ -12,3 +13,15 @@ class carAd(models.Model):
     body = models.CharField(max_length=20)
     price = models.CharField(max_length=20)
     idFromSite = models.CharField(max_length=20)
+
+
+class CarAd1(models.Model):
+    power = models.CharField(max_length=20)
+    mileage = models.CharField(max_length=20)
+    year = models.CharField(max_length=20)
+    airCondition = models.CharField(max_length=30)
+    gearBox = models.CharField(max_length=20)
+    chassis = models.CharField(max_length=20)
+    price = models.CharField(max_length=20)
+    idFromSite = models.CharField(max_length=20)
+    fuelType = models.CharField(max_length=20)
