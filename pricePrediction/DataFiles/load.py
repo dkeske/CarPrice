@@ -1,6 +1,34 @@
 import numpy as np
+from sklearn.feature_extraction import DictVectorizer
 # import os
+import os
+##########
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CarPrice.settings")
+# Uncomment below for Django 1.7 +
+import django
+django.setup()
+##########
 from pricePrediction import models
+
+def getSet1():
+    fields = ['chassis', 'airCondition', 'gearBox', 'fuelType', 'mileage', ]
+    featureList = models.CarAd1.objects.values()
+    v = DictVectorizer(sparse=False)
+    X = v.fit_transform(featureList)
+    # v.restrict(['idFromSite'])
+    print v.vocabulary_
+    print v.get_feature_names()
+    F = X[:, :18]
+    S = X[:, 19:]
+    sum = np.concatenate((F, S), axis=1)
+    print F.shape
+    print S.shape
+    print sum.shape
+    # for elem in X[0]:
+    #     print elem
+    return [sum, [], [], []]
+
+
 def getSet(trainSize=0.7):
     # dirname = os.path.dirname(__file__)
     # f = open(dirname+ '/outputfilePOLOVNI.txt')
@@ -34,3 +62,5 @@ def getSet(trainSize=0.7):
     dataPrice_test = dataPrice[rowNumPrice*trainSize:]
 
     return [dataParams_train, dataPrice_train, dataParams_test, dataPrice_test]
+if __name__ == "__main__":
+    getSet1()

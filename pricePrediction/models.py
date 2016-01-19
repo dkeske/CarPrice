@@ -16,12 +16,13 @@ class carAd(models.Model):
 
 
 class CarAd1(models.Model):
-    power = models.CharField(max_length=20)
-    mileage = models.CharField(max_length=20)
-    year = models.CharField(max_length=20)
+    power = models.IntegerField()
+    mileage = models.IntegerField()
+    year = models.IntegerField()
     airCondition = models.CharField(max_length=30)
     gearBox = models.CharField(max_length=20)
     chassis = models.CharField(max_length=20)
-    price = models.CharField(max_length=20)
-    idFromSite = models.CharField(max_length=20)
+    price = models.IntegerField()
+    idFromSite = models.IntegerField()
     fuelType = models.CharField(max_length=20)
+
