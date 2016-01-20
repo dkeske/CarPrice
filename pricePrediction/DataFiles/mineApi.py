@@ -1,6 +1,8 @@
 import json
 import requests
 import os
+import sys
+sys.path.append("/home/ubuntu/workspace/")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CarPrice.settings")
 # Uncomment below for Django 1.7 +
 import django

@@ -1,4 +1,5 @@
 import numpy as np
+import pickle
 from sklearn.feature_extraction import DictVectorizer
 # import os
 import os
@@ -26,6 +27,8 @@ def getSet1():
     print sum.shape
     # for elem in X[0]:
     #     print elem
+    with open("dataModel.p", 'w') as f: #write whole model into file
+        pickle.dump(sum, f, 2)
     return [sum, [], [], []]
 
 
