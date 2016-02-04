@@ -16,7 +16,8 @@ Using the web page, the user can enter the data related to the car he wishes to 
 
 ## Chrome extension
 
-The project features a restful web service, which responds to requests sent by the chrome extension [CarPriceChrome] ("https://github.com/dkeske/CarPriceChrome"). After the user activates the extension in Chrome, upon opening a car ad on polovniautomobili.com, the extension will make a request to the service, and send the car's relevant data. The result (predicted price) is displayed next to the ad's title.
+<<<<<<< HEAD
+The project features a restful web service, which responds to requests sent by the chrome extension [CarPriceChrome] (https://github.com/dkeske/CarPriceChrome). After the user activates the extension in Chrome, upon opening a car ad on polovniautomobili.com, the extension will make a request to the service, and send the car's relevant data. The result (predicted price) is displayed next to the ad's title.
 
 ## Implementation
 
