@@ -7,6 +7,7 @@
 ## Project interfaces
 
 This project features two use cases:
+
 1. A web page
 2. A chrome extension
 
@@ -29,14 +30,15 @@ Data is gathered using the website, and the API. Data is scraped using python li
 Data is saved as a textual file in [DataFiles/outputfilePolovni.txt](https://github.com/dkeske/CarPrice/blob/master/pricePrediction/DataFiles/outputfilePOLOVNI.txt) and also in the sqlite3 database. Data model is located in [models.py](https://github.com/dkeske/CarPrice/blob/master/pricePrediction/models.py) :
 
 class carAd(models.Model):
-    - kw : car's engine output in kilowats
-    - km : total mileage in kilometres
-    - year : year of production
-    - ac : type of air conditioning
-    - gears : type of transmission
-    - body : type of body
-    - price : listed price
-    - idFromSite : unique id on the website
+
+- kw : car's engine output in kilowats
+- km : total mileage in kilometres
+- year : year of production
+- ac : type of air conditioning
+- gears : type of transmission
+- body : type of body
+- price : listed price
+- idFromSite : unique id on the website
 
 After gathering, cathegorical values are vectorized, and displayed as zeroes and ones. Features with more than two cathegorical values are displayed using a sparse matrix, or "dummy values". Car's body type, which can take any of the four different values is transformed into 3 features, with all zeroes being the fourth one.
 
