@@ -2,7 +2,7 @@
 
 ## About the project
 
-[Polovniautomobili] (http://www.polovniautomobili.com/) is the most popular website for selling new and used cars in Serbia. Next to its core functionality, it offers car tire search, registration price calculation, and others. Main idea of this project is to analyze car ads posted on the website, and predict the price of a car in relation to all the other cars posted on the website. The method of machine learning used to achieve this is linear regression. 
+[Polovniautomobili] (http://www.polovniautomobili.com/) is the most popular website for selling new and used cars in Serbia. Next to its core functionality, it offers car tire search, registration price calculation, and others. Main idea of this project is to analyze car ads posted on the website, and predict the price of a car in relation to all the other cars posted on the website. The methods of machine learning used to achieve this are linear and ridge regression. 
 
 ## Project interfaces
 
