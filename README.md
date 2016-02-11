@@ -22,7 +22,7 @@ The project features a restful web service, which responds to requests sent by t
 
 ### Data gathering
 
-Data is gathered using the website, and the API. Data is scraped with BeautifulSoup, processed, and only the important properties are being saved. All the data curently used is scraped off the website, and API usage is still in development. 
+Data is gathered using the website, and the API. Data is scraped using python library [BeautifulSoup](https://pypi.python.org/pypi/beautifulsoup4), processed, and only the important properties are being saved. All the data curently used is scraped off the website, and API usage is still in development. 
 
 ### Dataset
 
