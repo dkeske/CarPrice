@@ -45,7 +45,7 @@ def getSet(trainSize=0.7):
     dataPrice = []
 
 
-    for carAd in models.carAd.objects.all():
+    for carAd in models.CarAd.objects.all():
         body = carAd.body.split(",")
         dataParams.append([carAd.kw, carAd.km, carAd.year, carAd.ac, carAd.gears, body[0], body[1], body[2]])
         dataPrice.append([carAd.price])

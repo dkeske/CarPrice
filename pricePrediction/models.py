@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 # kw, km, year, ac, gears, body, userPrice
 
-class carAd(models.Model):
+class CarAd(models.Model):
     kw = models.CharField(max_length=20)
     km = models.CharField(max_length=20)
     year = models.CharField(max_length=20)

@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import traceback
 
-from pricePrediction.models import carAd
+from pricePrediction.models import CarAd
 
 
 def parseBody(body):
@@ -86,11 +86,11 @@ def userSubmit(request):
                 body = "0,1,0"
             if body == "3":
                 body = "0,0,1"
-            carAdInstance = carAd(kw=kw, km=km, year=year, ac=ac, gears=gears, body=body, price=userPrice)
+            carAdInstance = CarAd(kw=kw, km=km, year=year, ac=ac, gears=gears, body=body, price=userPrice)
             carAdInstance.save()
             # saveToFile(kw, km, year, ac, gears, body, userPrice)
             # return HttpResponse(status=200)
-            return render('index.html', {'cars': carAd.objects.all()})
+            return render('index.html', {'cars': CarAd.objects.all()})
         except Exception, e:
             traceback.print_exc()
             return HttpResponse(status=403)
@@ -101,7 +101,7 @@ def chrome(request):
         try:
             url = request.POST['url']
             idFromSite = getIdFromUrl(url)
-            car = carAd.objects.filter(idFromSite=idFromSite)[0]
+            car = CarAd.objects.filter(idFromSite=idFromSite)[0]
             price = calculatePrice(car.kw, car.km, car.year, car.ac, car.gears, car.body.split(','))
             return render(request, 'chrome.html', {'price': price})
         except Exception as e:

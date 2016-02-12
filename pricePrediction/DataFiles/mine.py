@@ -6,7 +6,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CarPrice.settings")
 import django
 django.setup()
 
-from pricePrediction.models import carAd
+from pricePrediction.models import CarAd
 
 f = open('outputfilePOLOVNI.txt', 'w')
 
@@ -100,7 +100,7 @@ while (x < 43):
                     print("Auto found")
                 else:
                     f.write(writeF)
-                    carAdInstance = carAd(kw=kw, km=km, year=year, ac=klima, gears=menjac, body=karos, price=price,
+                    carAdInstance = CarAd(kw=kw, km=km, year=year, ac=klima, gears=menjac, body=karos, price=price,
                                           idFromSite=idFromSite)
                     carAdInstance.save()
 

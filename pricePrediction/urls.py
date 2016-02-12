@@ -1,10 +1,12 @@
 from django.conf.urls import patterns, url
 import views
+import api
+from rest_framework.urlpatterns import format_suffix_patterns
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = [
     # Examples:
     url(r'^$', views.home, name='home'),
 
@@ -17,4 +19,9 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-)
+    # API
+    url(r'^api/ads/$', api.CarAdList.as_view()),
+    url(r'^api/ads/(?P<idFromSite>[0-9]+)/$', api.CarAdDetail.as_view())
+]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
