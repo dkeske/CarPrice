@@ -23,11 +23,11 @@ The project features a restful web service, which responds to requests sent by t
 
 ## Implementation
 
-The whole project is writen in [python 2.7.10](https://www.python.org/downloads/release/python-2710/) and [Django 1.8](https://www.djangoproject.com/start/overview/). 
+The whole project is written in [python 2.7.10](https://www.python.org/downloads/release/python-2710/) and [Django 1.8](https://www.djangoproject.com/start/overview/). 
 
 ### Data gathering
 
-Data is gathered using the website, and the API. Data is scraped using python library [BeautifulSoup](https://pypi.python.org/pypi/beautifulsoup4), processed, and only the important properties are being saved. All the data curently used is scraped off the website, and API usage is still in development. 
+Data is gathered using the website, and the API. Data is scraped using python library [BeautifulSoup](https://pypi.python.org/pypi/beautifulsoup4), processed, and only the important properties are being saved. All the data currently used is scraped off the website, and API usage is still in development. 
 
 ### Dataset
 
@@ -44,9 +44,9 @@ class carAd(models.Model):
 - price : listed price
 - idFromSite : unique id on the website
 
-After gathering, cathegorical values are vectorized, and displayed as zeroes and ones. Features with more than two cathegorical values are displayed using a sparse matrix, or "dummy values". Car's body type, which can take any of the four different values is transformed into 3 features, with all zeroes being the fourth one.
+After gathering, cathegorical values are vectorized, and displayed as zeroes and ones. Features with more than two cathegorical values are displayed using a sparse matrix, or "dummy values". For example, car's body type, which can take one of the four different values, is transformed into 3 features (0-0-1; 0-1-0; 1-0-0), with all zeroes being the fourth one(0-0-0).
 
-Generating training and testing set has an optional argument trainSize. If no value is provided, a training set containing 70 percent of the data is created, for purposes of analysis. If, on the other hand, the parameter is set to 1, the whole dataset will be used as training set, and no testing set will be created. The latter case is used when predicting a new car's value, using the whole dataset as training to improve accuracy.
+Generating training and testing set has an optional argument trainSize (method getSet() in [DataFiles/load.py](https://github.com/dkeske/CarPrice/blob/master/pricePrediction/DataFiles/load.py)). If no value is provided, a training set containing 70 percent of the data is created, for purposes of analysis. If, on the other hand, the parameter is set to 1, the whole dataset will be used as training set, and no testing set will be created. The latter case is used when predicting a new car's value, using the whole dataset as training to improve accuracy.
 
 ### Linear and Ridge regression
 Machine learning is implemented using the [scikit-learn](http://scikit-learn.org/stable/modules/linear_model.html) python library. Two classes are used, LinearRegression, and Ridge. Data is stored and procesed as [numpy](http://www.numpy.org/) arrays. 
