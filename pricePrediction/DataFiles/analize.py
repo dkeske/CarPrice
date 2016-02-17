@@ -8,6 +8,9 @@ def getInfo(dataParams_test, dataPrice_test, clf):
     mean_abs_error = metrics.mean_absolute_error(dataPrice_test, predicted)
     mean_sqr_error = metrics.mean_squared_error(dataPrice_test, predicted)
 
+    # for coef in clf.coef_:
+    #     print ("%.8f" % coef)
+
     print("Mean absolute error")
     print(mean_abs_error)
     print("Root mean squared error")
@@ -82,3 +85,6 @@ def makeModelforView():
     clf = doLinear(1)
 
     return clf
+
+if __name__ == "__main__":
+    makeModel()

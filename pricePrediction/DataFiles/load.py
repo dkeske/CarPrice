@@ -33,22 +33,22 @@ def getSet1():
 
 
 def getSet(trainSize=0.7):
-    # dirname = os.path.dirname(__file__)
-    # f = open(dirname+ '/outputfilePOLOVNI.txt')
-    #
-    # dataAllParams = np.loadtxt(f, delimiter=',')
-    # np.random.shuffle(dataAllParams)
-    #
-    # dataParams= dataAllParams[:, :-1]
-    # dataPrice = dataAllParams[:, -1:]
-    dataParams = []
-    dataPrice = []
+    dirname = os.path.dirname(__file__)
+    f = open(dirname+ '/outputfilePOLOVNI.txt')
 
+    dataAllParams = np.loadtxt(f, delimiter=',')
+    np.random.shuffle(dataAllParams)
 
-    for carAd in models.CarAd.objects.all():
-        body = carAd.body.split(",")
-        dataParams.append([carAd.kw, carAd.km, carAd.year, carAd.ac, carAd.gears, body[0], body[1], body[2]])
-        dataPrice.append([carAd.price])
+    dataParams= dataAllParams[:, :-1]
+    dataPrice = dataAllParams[:, -1:]
+    # dataParams = []
+    # dataPrice = []
+    #
+    #
+    # for carAd in models.CarAd.objects.all():
+    #     body = carAd.body.split(",")
+    #     dataParams.append([carAd.kw, carAd.km, carAd.year, carAd.ac, carAd.gears, body[0], body[1], body[2]])
+    #     dataPrice.append([carAd.price])
 
     dataParams = np.array(dataParams).astype(np.float)
     dataPrice = np.array(dataPrice).astype(np.float)
