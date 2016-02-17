@@ -15,7 +15,7 @@ This project features two use cases:
 
 Using the web page, the user can enter the data related to the car he wishes to evaluate, and the system will predict a price, using the existing dataset. If the user disagrees with the calculated price, he can enter the price he thinks is more reasonable in a dialog that pops up. The data entered is then added to the dataset, and used in the next prediction in an effort to train the system and make it more accurate.
 
-![Website screenshot](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![Website screenshot](https://raw.githubusercontent.com/dkeske/CarPrice/master/pricePrediction/static/sellMegane.PNG "Website front page")
 
 ### Chrome extension
 
