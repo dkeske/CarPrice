@@ -21,6 +21,8 @@ Using the web page, the user can enter the data related to the car he wishes to 
 
 The project features a restful web service, which responds to requests sent by the chrome extension [CarPriceChrome] (https://github.com/dkeske/CarPriceChrome). After the user activates the extension in Chrome, upon opening a car ad on polovniautomobili.com, the extension will make a request to the service, and send the car's relevant data. The result (predicted price) is displayed next to the ad's title in bright orange.
 
+![Extension screenshot](https://raw.githubusercontent.com/dkeske/CarPrice/master/pricePrediction/static/megane1.PNG "Extension screenshot")
+
 ## Implementation
 
 The whole project is written in [python 2.7.10](https://www.python.org/downloads/release/python-2710/) and [Django 1.8](https://www.djangoproject.com/start/overview/). 
